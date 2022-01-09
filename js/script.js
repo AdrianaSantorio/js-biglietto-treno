@@ -15,7 +15,44 @@ Sulla base di queste informazioni dovrà calcolare il prezzo totale del viaggio,
 2-chiedere l' età del passeggero
 3-calcolare il prezzo del biglietto
 4-calcolare eventuali sconti
+5-stampare il risultato in pagina
 */
 
 //1
 
+const tripLength = parseInt(prompt('Inserire la lunghezza del viaggio in Chilolometri', '321').trim());
+console.log(tripLength);
+
+//2
+
+const passengerAge = parseInt(prompt("Inserire l' età del passeggero'", '25').trim());
+console.log(passengerAge);
+
+//validazione
+
+if (isNaN(tripLength)) {
+    alert('Prego inserire un valore numerico per indicare la lunghezza del viaggio in chilometri');
+} else if (isNaN(passengerAge)){
+    alert("Prego inserire un valore numerico per indicare l'età del passeggero")
+} else {
+
+    //3
+
+    let ticketPrice = (tripLength / 100 * 21).toFixed(2);
+    console.log(ticketPrice);
+
+    //4
+
+    if (passengerAge < 18) {
+        ticketPrice = (ticketPrice / 100 * 80).toFixed(2);
+    } else if (passengerAge >= 65) {
+        ticketPrice = (ticketPrice / 100 * 60).toFixed(2);
+    }
+
+    console.log(ticketPrice);
+
+    //5
+
+    const ticketPriceElement = document.getElementById('ticket-price');
+    ticketPriceElement.innerText = (`Il prezzo del tuo biglietto per percorrere ${tripLength} chilometri è ${ticketPrice}€.`);
+}
